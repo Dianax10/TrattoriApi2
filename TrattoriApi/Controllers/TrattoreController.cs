@@ -18,9 +18,13 @@ namespace TrattoriApi.Controllers
         }
    
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult GetAllTrattori()
         {
-            return new string[] { "value1", "value2" };
+          var trattori= _trattoreServices.GetAll();
+            if (trattori==null)
+                return NotFound("Trattore not Found");
+
+            return Ok(trattori);
         }
 
         // GET api/<TrattoreController>/5

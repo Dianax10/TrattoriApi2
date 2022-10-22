@@ -40,16 +40,14 @@ namespace TrattoriApi.Services
             return trattoreMap;
 
         }
-
+        public IList<Trattore> GetAll()=>_fileHelper.ReadAndDeserialize(_filepath);
+       
         public IList<Trattore> Delete(int idTrattore)
         {
             throw new NotImplementedException();
         }
 
-        public IList<Trattore> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public IList<Trattore> GetByFilter(string color)
         {
