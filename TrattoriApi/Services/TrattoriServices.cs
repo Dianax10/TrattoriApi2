@@ -40,26 +40,29 @@ namespace TrattoriApi.Services
             return trattoreMap;
 
         }
+
         public IList<Trattore> GetAll()=>_fileHelper.ReadAndDeserialize(_filepath);
-       
+
+        public Trattore? GetById(int idTrattore)
+        {
+           var trattoreReaded = _fileHelper.ReadAndDeserialize(_filepath);
+            var trattoreByid = trattoreReaded.FirstOrDefault(trattoreReaded=> trattoreReaded.IdTrattori==idTrattore); 
+            return trattoreByid;
+        }
+
         public IList<Trattore> Delete(int idTrattore)
         {
             throw new NotImplementedException();
         }
 
-       
-
-        public IList<Trattore> GetByFilter(string color)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Trattore GetById(int idTrattore)
-        {
-            throw new NotImplementedException();
-        }
+      
 
         public Trattore Put(SimpleTrattore trattore, int idTrattore)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<Trattore> GetByFilter(string color)
         {
             throw new NotImplementedException();
         }

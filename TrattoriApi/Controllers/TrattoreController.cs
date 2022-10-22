@@ -27,11 +27,16 @@ namespace TrattoriApi.Controllers
             return Ok(trattori);
         }
 
-        // GET api/<TrattoreController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+       
+        [HttpGet("{idTrattore}")]
+        public IActionResult GetById(int idTrattore)
         {
-            return "value";
+           var trattoriFound=_trattoreServices.GetById(idTrattore);
+            if (trattoriFound == null)
+                return NotFound("Trattore non trovato");
+
+            return Ok(trattoriFound);
+
         }
 
 
