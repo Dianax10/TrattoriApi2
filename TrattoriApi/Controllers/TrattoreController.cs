@@ -60,9 +60,10 @@ namespace TrattoriApi.Controllers
 
 
         [HttpPut("{idTrattore}")]
-        public void Put(int idTrattore, [FromBody] SimpleTrattore trattore)
+        public IActionResult UpdateTrattore(int idTrattore, [FromBody] SimpleTrattore trattore)
         {
-
+            var trattori = _trattoreServices.Put(trattore,idTrattore);
+            return Ok(trattori);
         }
 
        

@@ -75,7 +75,28 @@ namespace TrattoriApi.Services
 
         public Trattore Put(SimpleTrattore trattore, int idTrattore)
         {
-            throw new NotImplementedException();
+            var trattoreMap = Mapping(trattore);
+            var trattoreReaded = _fileHelper.ReadAndDeserialize(_filepath);
+            var trattoreById = GetById(idTrattore);
+            if (trattoreById == null)
+            {
+                trattoreReaded.Add(trattoreMap);
+                _fileHelper.WriteAndSerialize(_filepath,trattoreReaded);
+            }
+
+            trattoreReaded.Remove(trattoreById);
+
+            var trattoreFound = new Trattore()
+            {
+                IdTrattori = trattoreById.IdTrattori,
+                Marca = trattoreById.Marca,
+                Modello = trattoreById.Modello,
+                Colore = trattoreById.Colore,
+
+            };
+            trattoreReaded.Add(trattoreFound);
+            _fileHelper.WriteAndSerialize(_filepath, trattoreReaded);
+            return trattoreFound;
         }
 
       
