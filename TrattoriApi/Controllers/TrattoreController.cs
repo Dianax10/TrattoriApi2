@@ -49,17 +49,22 @@ namespace TrattoriApi.Controllers
 
         }
 
-
-        // PUT api/<TrattoreController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpDelete("{idTrattore}")]
+        public IActionResult Delete(int idTrattore)
         {
+            var trattori= _trattoreServices.Delete(idTrattore);
+            if (trattori == null)
+                return BadRequest("Impossibile eliminare Trattore non esistente");
+            return Ok(trattori);
         }
 
-        // DELETE api/<TrattoreController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+
+        [HttpPut("{idTrattore}")]
+        public void Put(int idTrattore, [FromBody] SimpleTrattore trattore)
         {
+
         }
+
+       
     }
 }

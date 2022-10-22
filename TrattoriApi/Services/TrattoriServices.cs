@@ -59,7 +59,16 @@ namespace TrattoriApi.Services
         }
         public IList<Trattore> Delete(int idTrattore)
         {
-            throw new NotImplementedException();
+            var trattoreReaded = _fileHelper.ReadAndDeserialize(_filepath);
+            var trattoreByid = trattoreReaded.FirstOrDefault(trattoreReaded => trattoreReaded.IdTrattori == idTrattore);
+            if (trattoreByid != null)
+            {
+                trattoreReaded.Remove(trattoreByid);
+                _fileHelper.WriteAndSerialize(_filepath, trattoreReaded);
+                return trattoreReaded;
+            }
+            return null;
+
         }
 
       
