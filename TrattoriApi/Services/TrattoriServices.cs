@@ -50,6 +50,13 @@ namespace TrattoriApi.Services
             return trattoreByid;
         }
 
+        public IList<Trattore> GetByFilter(string colore)
+        {
+            var trattoreReaded = _fileHelper.ReadAndDeserialize(_filepath);
+            var trattoreByColor = trattoreReaded.Where(trattoreReaded => trattoreReaded.Colore == colore).ToList();
+            return trattoreByColor;
+
+        }
         public IList<Trattore> Delete(int idTrattore)
         {
             throw new NotImplementedException();
@@ -62,9 +69,6 @@ namespace TrattoriApi.Services
             throw new NotImplementedException();
         }
 
-        public IList<Trattore> GetByFilter(string color)
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }

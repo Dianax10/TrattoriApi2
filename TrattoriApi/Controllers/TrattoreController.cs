@@ -38,6 +38,16 @@ namespace TrattoriApi.Controllers
             return Ok(trattoriFound);
 
         }
+        [HttpGet("{colore}")]
+        public IActionResult GetByColor(string colore)
+        {
+            var trattoriFound = _trattoreServices.GetByFilter(colore);
+            if (trattoriFound == null)
+                return NotFound("Trattore non trovato");
+
+            return Ok(trattoriFound);
+
+        }
 
 
         // PUT api/<TrattoreController>/5
